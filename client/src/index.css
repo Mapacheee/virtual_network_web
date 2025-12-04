@@ -1,0 +1,84 @@
+:root {
+  --navy: #0a192f;
+  --light-navy: #112240;
+  --lightest-navy: #233554;
+  --slate: #8892b0;
+  --light-slate: #a8b2d1;
+  --white: #e6f1ff;
+  --green: #64ffda;
+  --font-sans: 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--navy);
+  color: var(--slate);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--white);
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+a {
+  color: var(--green);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid var(--green);
+  color: var(--green);
+  background-color: transparent;
+  padding: 0.75rem 1rem;
+  font-size: 14px;
+  font-family: var(--font-sans);
+  line-height: 1;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+button:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: var(--light-navy);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  margin-bottom: 20px;
+}
+
+input {
+  background-color: var(--lightest-navy);
+  border: 1px solid var(--lightest-navy);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--green);
+}
