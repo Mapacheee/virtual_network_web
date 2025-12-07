@@ -1,5 +1,7 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { StudentModule } from './student/student.module';
 import { CoursesModule } from './courses/courses.module';
 import { SimulationsModule } from './simulations/simulations.module';
@@ -13,6 +15,10 @@ import { AdminService } from './admin/admin.service';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite',

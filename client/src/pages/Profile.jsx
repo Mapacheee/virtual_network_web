@@ -28,6 +28,7 @@ const Profile = () => {
                     <div>
                         <h2 style={{ color: 'var(--white)' }}>{student.name}</h2>
                         <p style={{ color: 'var(--light-slate)' }}><strong>Edad:</strong> {student.age} años</p>
+                        <p style={{ color: 'var(--light-slate)' }}><strong>Carrera:</strong> {student.career}</p>
                         <p style={{ color: 'var(--light-slate)' }}><strong>Universidad:</strong> {student.university}</p>
                         <p style={{ color: 'var(--light-slate)' }}><strong>Correo:</strong> {student.email}</p>
                     </div>

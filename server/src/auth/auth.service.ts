@@ -9,12 +9,12 @@ export class AuthService {
         private adminService: AdminService,
     ) { }
 
-    async validateStudent(email: string, name: string) {
-        let student = await this.studentService.findByEmail(email);
-        if (!student) {
-            student = await this.studentService.create({ email, name, age: 20, university: 'Unknown' });
-        }
-        return student;
+    async validateStudent(email: string) {
+        return this.studentService.findByEmail(email);
+    }
+
+    async registerStudent(data: any) {
+        return this.studentService.create(data);
     }
 
     async validateAdmin(username: string, pass: string) {

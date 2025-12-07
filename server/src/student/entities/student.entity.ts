@@ -20,6 +20,9 @@ export class Student {
   university: string;
 
   @Column({ nullable: true })
+  career: string;
+
+  @Column({ nullable: true })
   photoUrl: string;
 
   @Column({ nullable: true })
