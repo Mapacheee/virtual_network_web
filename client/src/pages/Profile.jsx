@@ -53,7 +53,7 @@ const Profile = () => {
                     {student.simulations && student.simulations.length > 0 ? (
                         <ul>
                             {student.simulations.map(sim => (
-                                <li key={sim.id}>{sim.title} - {sim.score} pts ({sim.status})</li>
+                                <li key={sim.id}>{sim.title} - {sim.score} pts ({sim.status === 'completed' ? 'Completado' : sim.status})</li>
                             ))}
                         </ul>
                     ) : (

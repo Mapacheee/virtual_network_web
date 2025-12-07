@@ -4,6 +4,8 @@ import axios from 'axios';
 const Simulations = () => {
     const [simulations, setSimulations] = useState([]);
     const [activeQuiz, setActiveQuiz] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [modalData, setModalData] = useState({ score: 0, message: '' });
     const user = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
@@ -38,13 +40,21 @@ const Simulations = () => {
             axios.post('http://localhost:3000/simulations', {
                 title: `Simulación ${activeQuiz.type}`,
                 score: finalScore,
-                status: 'completed',
+                status: 'Completado',
                 student: user.id
             }).then(() => {
-                alert(`Simulación terminada. Puntaje: ${finalScore}`);
+                setModalData({
+                    score: finalScore,
+                    message: finalScore >= 50 ? '¡Excelente trabajo! Has demostrado buenas habilidades.' : 'Buen intento, pero puedes mejorar. ¡Sigue practicando!'
+                });
+                setShowModal(true);
                 setActiveQuiz(null);
             });
         }
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
     };
 
     if (activeQuiz) {
@@ -92,6 +102,22 @@ const Simulations = () => {
                     <p>No has completado ninguna simulación.</p>
                 )}
             </div>
+
+            {showModal && (
+                <div style={{
+                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+                    backgroundColor: 'rgba(0,0,0,0.7)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000
+                }}>
+                    <div className="card" style={{ width: '400px', textAlign: 'center', animation: 'fadeIn 0.3s ease-in-out' }}>
+                        <h2 style={{ color: 'var(--green)', marginBottom: '1rem' }}>Simulación Finalizada</h2>
+                        <div style={{ fontSize: '3rem', fontWeight: 'bold', color: 'var(--white)', margin: '1rem 0' }}>
+                            {modalData.score}%
+                        </div>
+                        <p style={{ marginBottom: '2rem' }}>{modalData.message}</p>
+                        <button onClick={closeModal} style={{ width: '100%' }}>Continuar</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
