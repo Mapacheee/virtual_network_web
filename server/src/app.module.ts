@@ -12,6 +12,7 @@ import { Course } from './courses/entities/course.entity';
 import { Simulation } from './simulations/entities/simulation.entity';
 import { Admin } from './admin/entities/admin.entity';
 import { AdminService } from './admin/admin.service';
+import { CoursesService } from './courses/courses.service';
 
 @Module({
   imports: [
@@ -33,12 +34,22 @@ import { AdminService } from './admin/admin.service';
   ],
 })
 export class AppModule implements OnModuleInit {
-  constructor(private readonly adminService: AdminService) { }
+  constructor(
+    private readonly adminService: AdminService,
+    private readonly coursesService: CoursesService
+  ) { }
 
   async onModuleInit() {
     const admin = await this.adminService.findByUsername('admin');
     if (!admin) {
       await this.adminService.create({ username: 'admin', password: 'adminpassword' });
+    }
+
+    const courses = await this.coursesService.findAll();
+    if (courses.length === 0) {
+      await this.coursesService.create({ title: 'Introducción a la Entrevista', description: 'Aprende los fundamentos para enfrentar tu primera entrevista laboral.' });
+      await this.coursesService.create({ title: 'Gestión de Conflictos', description: 'Técnicas para resolver disputas en el ambiente de trabajo.' });
+      await this.coursesService.create({ title: 'Liderazgo Efectivo', description: 'Desarrolla habilidades para liderar equipos pequeños.' });
     }
   }
 }
