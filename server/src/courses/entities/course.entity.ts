@@ -12,6 +12,9 @@ export class Course {
     @Column()
     description: string;
 
+    @Column('simple-json', { nullable: true })
+    modules: string[];
+
     @ManyToOne(() => Student, (student) => student.courses)
     student: Student;
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete } from '@nestjs/common';
 import { SimulationsService } from './simulations.service';
 
 @Controller('simulations')
@@ -18,5 +18,15 @@ export class SimulationsController {
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.simulationsService.findOne(+id);
+    }
+
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() updateSimulationDto: any) {
+        return this.simulationsService.update(+id, updateSimulationDto);
+    }
+
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+        return this.simulationsService.remove(+id);
     }
 }

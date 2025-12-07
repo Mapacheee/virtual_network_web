@@ -21,4 +21,12 @@ export class CoursesService {
     findOne(id: number) {
         return this.courseRepository.findOne({ where: { id } });
     }
+
+    update(id: number, updateCourseDto: any) {
+        return this.courseRepository.update(id, updateCourseDto);
+    }
+
+    remove(id: number) {
+        return this.courseRepository.delete(id);
+    }
 }

@@ -15,10 +15,18 @@ export class SimulationsService {
     }
 
     findAll() {
-        return this.simulationRepository.find();
+        return this.simulationRepository.find({ relations: ['student'] });
     }
 
     findOne(id: number) {
         return this.simulationRepository.findOne({ where: { id } });
+    }
+
+    update(id: number, updateSimulationDto: any) {
+        return this.simulationRepository.update(id, updateSimulationDto);
+    }
+
+    remove(id: number) {
+        return this.simulationRepository.delete(id);
     }
 }
